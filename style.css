@@ -5,8 +5,6 @@ body {
     /* Dark background */
     color: #e0e0e0;
     /* Light text */
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +24,6 @@ nav,
 main,
 footer {
     width: 100%;
-    max-width: 800px;
     margin: 0 auto;
     padding: 1em;
 }
@@ -51,10 +48,10 @@ nav {
 
 nav ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -77,6 +74,7 @@ nav a:hover {
     /* Dark text on hover */
 }
 
+/* Button styles */
 button {
     background-color: #76ff03;
     /* Green background */
@@ -110,6 +108,7 @@ img {
     width: 50%;
     height: auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5%;
 }
 
 img:hover {
@@ -117,6 +116,7 @@ img:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Footer styles */
 footer {
     margin-top: 2em;
     padding: 1em;
@@ -137,6 +137,44 @@ footer {
 .page.active {
     display: block;
     opacity: 1;
+}
+
+/* Specific page layout */
+#page1extra {
+    display: grid;
+    grid-template-columns: 560px 560px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "image video" "text video";
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+}
+
+#page1extra text-content {
+    grid-area: image;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#page1extra img {
+    width: 100%;
+    height: auto;
+    max-width: 560px;
+    max-height: 315px;
+}
+
+#page1extra p {
+    grid-area: text;
+}
+
+.video-frame {
+    grid-area: video;
+    width: 100%;
+    height: 100%;
+    max-height: 630px;
+    border: none;
+    border-radius: 5%;
 }
 
 /* DIY Carbonara styles */
@@ -167,9 +205,9 @@ footer {
 #trashicon {
     width: 50px;
     height: auto;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
     cursor: pointer;
 }
 
@@ -186,6 +224,17 @@ footer {
     border-radius: 5px;
 }
 
+/* Instructions styles */
+#instructions {
+    border: 2px solid #76ff03;
+    /* Green border */
+    padding: 0.5em;
+    border-radius: 5px;
+    display: none;
+    /* Initially hidden */
+}
+
+/* Media query for screens 800px and below */
 @media screen and (max-width: 800px) {
     nav ul {
         flex-direction: column;
@@ -240,20 +289,10 @@ footer {
         background-color: #ff0000;
         /* Red background */
     }
-}
 
-
-/* Instructions styles */
-#instructions {
-    border: 2px solid #76ff03;
-    /* Green border */
-    padding: 0.5em;
-    border-radius: 5px;
-    display: none;
-    /* Initially hidden */
-}
-
-/* Video frame styles */
-.video-frame {
-    border: none;
+    #page1extra {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

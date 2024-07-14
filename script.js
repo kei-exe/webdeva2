@@ -52,6 +52,46 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
+// Audio to play when browsing
+document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('background-audio');
+
+    // Attempt to play the audio on page load
+    const playAudio = () => {
+        audio.play().then(() => {
+            localStorage.setItem('audioPlaying', 'true');
+        }).catch(error => {
+            console.error('Autoplay was prevented:', error);
+            localStorage.setItem('audioPlaying', 'false');
+        });
+    };
+
+    // Check if audio was playing before the page was reloaded
+    if (localStorage.getItem('audioPlaying') === 'true') {
+        playAudio();
+    }
+
+    // Event listener to play audio when user interacts with the page
+    document.addEventListener('click', () => {
+        if (localStorage.getItem('audioPlaying') === 'false') {
+            playAudio();
+        }
+    });
+
+    // Listen for the audio ending to reset the play button and state
+    audio.addEventListener('ended', () => {
+        localStorage.setItem('audioPlaying', 'false');
+    });
+
+    // Reset the state if the audio is paused
+    audio.addEventListener('pause', () => {
+        if (audio.currentTime < audio.duration) {
+            localStorage.setItem('audioPlaying', 'false');
+        }
+    });
+});
+
+
 // Function to toggle the hamburger menu
 function toggleMenus() {
     menuItemsList.classList.toggle("menuHide");
