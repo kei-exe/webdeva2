@@ -10,86 +10,182 @@
 </head>
 
 <body>
+    <!-- Background audio -->
     <audio id="background-audio" src="bella ciao.mp3" preload="auto" loop></audio>
+
+    <!-- Page header -->
     <header>
         <h1>Carbonara</h1>
     </header>
+
+    <!-- Navigation menu -->
     <nav>
-        <!-- Menu system -->
         <button id="hamIcon">Menu</button>
         <ul>
             <li><a href="#" id="page1btn">History</a></li>
             <li><a href="#" id="page2btn">Recipe</a></li>
             <li><a href="#" id="page3btn">Pairings</a></li>
             <li><a href="#" id="page4btn">DIY Carbonara</a></li>
+            <li><a href="#" id="page5btn">Quiz</a></li>
         </ul>
     </nav>
+
+    <!-- Main content container -->
     <div id="pagecontainer">
+        <!-- History page -->
         <section class="page" id="page1">
             <h2>History of Carbonara</h2>
-            <p>Carbonara is an Italian pasta dish from Rome made with egg, cheese, pancetta, and pepper. The recipe
-                is not fixed by a specific type of cheese or pasta.</p>
-            <p>The dish arrived at its modern form, with its current name, in the middle of the 20th century.</p>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Early 1800s</div>
+                        <div class="timeline-content">
+                            <h3>Coal Miners and Carbonari</h3>
+                            <p>The name "Carbonara" translates to "in the manner of coal miners". Some historians
+                                believe the dish originated with coal miners or a secret society called the "Carbonari"
+                                involved in Italy's unification. The dish may have been simple, using affordable
+                                ingredients like pepper and lard to resemble coal dust on the pasta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">19th Century</div>
+                        <div class="timeline-content">
+                            <h3>Neapolitan Cookbook</h3>
+                            <p>Recipes resembling Carbonara appeared in Neapolitan cookbooks by Ippolito Cavalcanti.
+                                These recipes included beaten eggs, cheese, and pepper but did not incorporate pasta
+                                yet.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1912</div>
+                        <div class="timeline-content">
+                            <h3>La Carbonara Restaurant</h3>
+                            <p>A restaurant named La Carbonara opened in Rome, owned by a coal seller. Although they do
+                                not claim to have invented the dish, the name may have contributed to the association
+                                with coal miners.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1940s</div>
+                        <div class="timeline-content">
+                            <h3>Post-War Influence</h3>
+                            <p>The most recognized theory suggests that Carbonara was popularized during World War II.
+                                American soldiers in Italy used their rations, which included bacon and powdered eggs,
+                                to create the dish. This period marks the beginning of Carbonara's modern recipe.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1950s</div>
+                        <div class="timeline-content">
+                            <h3>Popularization in American Culture</h3>
+                            <p>Carbonara became popular in American pop culture, featuring in films and recipe books.
+                                During this time, ingredients like garlic were added to the recipe.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1980s</div>
+                        <div class="timeline-content">
+                            <h3>Further Evolution</h3>
+                            <p>Recipes began specifying the use of guanciale, heavy cream, and various spices and herbs.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1990s</div>
+                        <div class="timeline-content">
+                            <h3>Simplification</h3>
+                            <p>The recipe was simplified to its traditional form using egg yolks, pecorino cheese,
+                                guanciale, and black pepper.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Recent Years</div>
+                        <div class="timeline-content">
+                            <h3>Claim of Invention</h3>
+                            <p>A man from Bologna, Renato Gualandi, claimed to have invented Carbonara in 1944 during a
+                                banquet for Allied troops, using ingredients like bacon, cream, processed cheese, and
+                                dried egg yolk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="page1extra">
                 <a href="https://en.wikipedia.org/wiki/Carbonara" target="_blank">
                     <img src="images/carbonara-history.jpg" alt="Carbonara History">
                 </a>
                 <p> Click on the image to learn more about the origins of Carbonara.</p>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/2YX3EYm9AIk?si=ikVQBoUZY9LE75QG"
-                    title="YouTube video player" class="video-frame"
+                <iframe class="video-frame" src="https://www.youtube.com/embed/2YX3EYm9AIk?si=ikVQBoUZY9LE75QG"
+                    title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </section>
+
+        <!-- Recipe page -->
         <section class="page" id="page2">
             <h2>Carbonara Recipe</h2>
-            <ul>
-                <li>200g spaghetti</li>
-                <li>100g pancetta</li>
-                <li>2 large eggs</li>
-                <li>50g pecorino cheese</li>
-                <li>50g parmesan</li>
-                <li>Freshly ground black pepper</li>
-                <li>Salt</li>
-                <li>2 tbsp olive oil</li>
-            </ul>
-            <button onclick="toggleRecipeDetails()">Show/Hide Cooking Instructions</button>
-            <div id="instructions" style="display:none;">
-                <p>1. Boil the pasta in salted water.</p>
-                <p>2. Fry the pancetta in olive oil until crispy.</p>
-                <p>3. Beat the eggs and mix with grated pecorino and parmesan cheese.</p>
-                <p>4. Drain the pasta and combine with the pancetta.</p>
-                <p>5. Remove from heat and quickly mix in the egg and cheese mixture.</p>
-                <p>6. Season with black pepper and serve immediately.</p>
+            <div class="recipe-container">
+                <div class="ingredients">
+                    <ul>
+                        <li>200g spaghetti</li>
+                        <li>100g pancetta</li>
+                        <li>2 large eggs</li>
+                        <li>50g pecorino cheese</li>
+                        <li>50g parmesan</li>
+                        <li>Freshly ground black pepper</li>
+                        <li>Salt</li>
+                        <li>2 tbsp olive oil</li>
+                    </ul>
+                </div>
+                <div id="instructions" style="display:none;">
+                    <p>1. Boil the pasta in salted water.</p>
+                    <p>2. Fry the pancetta in olive oil until crispy.</p>
+                    <p>3. Beat the eggs and mix with grated pecorino and parmesan cheese.</p>
+                    <p>4. Drain the pasta and combine with the pancetta.</p>
+                    <p>5. Remove from heat and quickly mix in the egg and cheese mixture.</p>
+                    <p>6. Season with black pepper and serve immediately.</p>
+                </div>
+                <p>For more detailed recipes, visit <a
+                        href="https://www.bbcgoodfood.com/recipes/ultimate-spaghetti-carbonara-recipe"
+                        target="_blank">BBC Good Food</a>.</p>
+                <button class="recipe-button" onclick="toggleRecipeDetails()">Show/Hide Cooking Instructions</button>
             </div>
-            <p>For more detailed recipes, visit <a
-                    href="https://www.bbcgoodfood.com/recipes/ultimate-spaghetti-carbonara-recipe" target="_blank">BBC
-                    Good Food</a>.</p>
         </section>
+
+        <!-- Pairings page -->
         <section class="page" id="page3">
             <h2>Pairings for Carbonara</h2>
-            <h3>Drinks</h3>
-            <ul>
-                <li><strong>White Wine:</strong> A crisp white wine like Pinot Grigio or Sauvignon Blanc.</li>
-                <li><strong>Red Wine:</strong> A light red wine like Chianti or Pinot Noir.</li>
-                <li><strong>Sparkling Water:</strong> To cleanse the palate and complement the richness.</li>
-                <li><strong>Lemonade:</strong> For a refreshing and citrusy balance.</li>
-            </ul>
-            <h3>Sides</h3>
-            <ul>
-                <li><strong>Garlic Bread:</strong> Classic and flavorful, perfect for soaking up any leftover sauce.
-                </li>
-                <li><strong>Caesar Salad:</strong> A crisp and tangy salad to balance the creamy pasta.</li>
-                <li><strong>Roasted Vegetables:</strong> Adds a healthy and savory element to the meal.</li>
-                <li><strong>Caprese Salad:</strong> Fresh tomatoes, mozzarella, and basil for a light and tasty side.
-                </li>
-            </ul>
+            <div class="pairings-container">
+                <div class="drinks">
+                    <h3>Drinks</h3>
+                    <ul>
+                        <li><strong>White Wine:</strong> A crisp white wine like Pinot Grigio or Sauvignon Blanc.</li>
+                        <li><strong>Red Wine:</strong> A light red wine like Chianti or Pinot Noir.</li>
+                        <li><strong>Sparkling Water:</strong> To cleanse the palate and complement the richness.</li>
+                        <li><strong>Lemonade:</strong> For a refreshing and citrusy balance.</li>
+                    </ul>
+                </div>
+                <div class="sides">
+                    <h3>Sides</h3>
+                    <ul>
+                        <li><strong>Garlic Bread:</strong> Classic and flavorful, perfect for soaking up any leftover
+                            sauce.</li>
+                        <li><strong>Caesar Salad:</strong> A crisp and tangy salad to balance the creamy pasta.</li>
+                        <li><strong>Roasted Vegetables:</strong> Adds a healthy and savory element to the meal.</li>
+                        <li><strong>Caprese Salad:</strong> Fresh tomatoes, mozzarella, and basil for a light and tasty
+                            side.</li>
+                    </ul>
+                </div>
+            </div>
             <p>Discover more drink pairings <a
                     href="https://www.lacucinaitaliana.com/italian-food/italian-dishes/wines-to-pair-with-carbonara?refresh_ce="
                     target="_blank">here</a>.</p>
         </section>
+
+        <!-- DIY Carbonara page -->
         <section class="page" id="page4">
             <h2>DIY Carbonara</h2>
+            <h5>(Stickers can be placed anywhere)</h5>
             <div id="ingredients">
                 <h3>Ingredients</h3>
                 <img src="images/spaghetti.png" alt="Spaghetti" id="spaghetti" class="ingredient" draggable="true">
@@ -98,12 +194,139 @@
                 <img src="images/cheese.png" alt="Cheese" id="cheese" class="ingredient" draggable="true">
             </div>
             <div id="plate">
-                <h3>Your Plate</h3>
+                <h3>DropZone<br>(Drop image here to make sticker)</h3>
                 <div id="dropzone"></div>
             </div>
             <img src="images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
         </section>
+
+        <!-- Quiz page -->
+        <section class="page" id="page5">
+            <h2>Carbonara Quiz</h2>
+            <div id="legend">
+                <h3>Legend:</h3>
+                <p><span class="correct-answer">Green:</span> Correct answer/question</p>
+                <p><span class="incorrect-answer">Red:</span> Incorrect answer/question</p>
+                <p><span class="unanswered-question">Yellow:</span> Unanswered question</p>
+            </div>
+            <form id="quiz-form">
+                <div class="quiz-question">
+                    <p>1. What is the main ingredient in Carbonara sauce?</p>
+                    <input type="radio" id="q1a" name="q1" value="wrong">
+                    <label for="q1a">Tomato</label>
+                    <input type="radio" id="q1b" name="q1" value="right">
+                    <label for="q1b">Egg</label>
+                    <input type="radio" id="q1c" name="q1" value="wrong">
+                    <label for="q1c">Cream</label>
+                    <input type="radio" id="q1d" name="q1" value="wrong">
+                    <label for="q1d">Butter</label>
+                </div>
+                <div class="quiz-question">
+                    <p>2. Which type of cheese is traditionally used in Carbonara?</p>
+                    <input type="radio" id="q2a" name="q2" value="wrong">
+                    <label for="q2a">Cheddar</label>
+                    <input type="radio" id="q2b" name="q2" value="right">
+                    <label for="q2b">Pecorino</label>
+                    <input type="radio" id="q2c" name="q2" value="wrong">
+                    <label for="q2c">Mozzarella</label>
+                    <input type="radio" id="q2d" name="q2" value="wrong">
+                    <label for="q2d">Brie</label>
+                </div>
+                <div class="quiz-question">
+                    <p>3. What type of pasta is commonly used for Carbonara?</p>
+                    <input type="radio" id="q3a" name="q3" value="right">
+                    <label for="q3a">Spaghetti</label>
+                    <input type="radio" id="q3b" name="q3" value="wrong">
+                    <label for="q3b">Penne</label>
+                    <input type="radio" id="q3c" name="q3" value="wrong">
+                    <label for="q3c">Fusilli</label>
+                    <input type="radio" id="q3d" name="q3" value="wrong">
+                    <label for="q3d">Macaroni</label>
+                </div>
+                <div class="quiz-question">
+                    <p>4. Which meat is traditionally used in Carbonara?</p>
+                    <input type="radio" id="q4a" name="q4" value="wrong">
+                    <label for="q4a">Bacon</label>
+                    <input type="radio" id="q4b" name="q4" value="right">
+                    <label for="q4b">Pancetta</label>
+                    <input type="radio" id="q4c" name="q4" value="wrong">
+                    <label for="q4c">Ham</label>
+                    <input type="radio" id="q4d" name="q4" value="wrong">
+                    <label for="q4d">Sausage</label>
+                </div>
+                <div class="quiz-question">
+                    <p>5. Which of these ingredients is NOT used in traditional Carbonara?</p>
+                    <input type="radio" id="q5a" name="q5" value="wrong">
+                    <label for="q5a">Black Pepper</label>
+                    <input type="radio" id="q5b" name="q5" value="wrong">
+                    <label for="q5b">Parmesan</label>
+                    <input type="radio" id="q5c" name="q5" value="right">
+                    <label for="q5c">Garlic</label>
+                    <input type="radio" id="q5d" name="q5" value="wrong">
+                    <label for="q5d">Olive Oil</label>
+                </div>
+                <div class="quiz-question">
+                    <p>6. Carbonara originates from which country?</p>
+                    <input type="radio" id="q6a" name="q6" value="wrong">
+                    <label for="q6a">France</label>
+                    <input type="radio" id="q6b" name="q6" value="right">
+                    <label for="q6b">Italy</label>
+                    <input type="radio" id="q6c" name="q6" value="wrong">
+                    <label for="q6c">Spain</label>
+                    <input type="radio" id="q6d" name="q6" value="wrong">
+                    <label for="q6d">Greece</label>
+                </div>
+                <div class="quiz-question">
+                    <p>7. Carbonara is most associated with which Italian city?</p>
+                    <input type="radio" id="q7a" name="q7" value="wrong">
+                    <label for="q7a">Milan</label>
+                    <input type="radio" id="q7b" name="q7" value="right">
+                    <label for="q7b">Rome</label>
+                    <input type="radio" id="q7c" name="q7" value="wrong">
+                    <label for="q7c">Venice</label>
+                    <input type="radio" id="q7d" name="q7" value="wrong">
+                    <label for="q7d">Naples</label>
+                </div>
+                <div class="quiz-question">
+                    <p>8. What should be avoided when making Carbonara?</p>
+                    <input type="radio" id="q8a" name="q8" value="right">
+                    <label for="q8a">Overcooking the eggs</label>
+                    <input type="radio" id="q8b" name="q8" value="wrong">
+                    <label for="q8b">Using black pepper</label>
+                    <input type="radio" id="q8c" name="q8" value="wrong">
+                    <label for="q8c">Adding cheese</label>
+                    <input type="radio" id="q8d" name="q8" value="wrong">
+                    <label for="q8d">Using olive oil</label>
+                </div>
+                <div class="quiz-question">
+                    <p>9. What is the purpose of using the pasta cooking water in Carbonara?</p>
+                    <input type="radio" id="q9a" name="q9" value="right">
+                    <label for="q9a">To create a creamy sauce</label>
+                    <input type="radio" id="q9b" name="q9" value="wrong">
+                    <label for="q9b">To rinse the pasta</label>
+                    <input type="radio" id="q9c" name="q9" value="wrong">
+                    <label for="q9c">To cool the pasta</label>
+                    <input type="radio" id="q9d" name="q9" value="wrong">
+                    <label for="q9d">To add salt</label>
+                </div>
+                <div class="quiz-question">
+                    <p>10. Which ingredient adds a salty, savory flavor to Carbonara?</p>
+                    <input type="radio" id="q10a" name="q10" value="wrong">
+                    <label for="q10a">Basil</label>
+                    <input type="radio" id="q10b" name="q10" value="wrong">
+                    <label for="q10b">Oregano</label>
+                    <input type="radio" id="q10c" name="q10" value="wrong">
+                    <label for="q10c">Parsley</label>
+                    <input type="radio" id="q10d" name="q10" value="right">
+                    <label for="q10d">Pancetta</label>
+                </div>
+                <button type="button" onclick="submitQuiz()">Submit</button>
+            </form>
+            <div id="quiz-result"></div>
+        </section>
     </div>
+
+    <!-- Page footer -->
     <footer>
         <p>&copy; 2024 Carbonara World</p>
     </footer>

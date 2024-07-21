@@ -1,17 +1,17 @@
-// Target all elements to save to constants
+// Select navigation buttons and all pages
 const page1btn = document.querySelector("#page1btn");
 const page2btn = document.querySelector("#page2btn");
 const page3btn = document.querySelector("#page3btn");
 const page4btn = document.querySelector("#page4btn");
+const page5btn = document.querySelector("#page5btn");
 const allpages = document.querySelectorAll(".page");
+
+// Select elements for the hamburger menu, ingredients, dropzone, and trash icon
 const hamBtn = document.querySelector("#hamIcon");
 const menuItemsList = document.querySelector("nav ul");
 const ingredients = document.querySelectorAll('.ingredient');
 const dropzone = document.getElementById('dropzone');
 const trashicon = document.getElementById("trashicon");
-
-// Select all subtopic pages and log them to the console
-console.log(allpages);
 
 // Function to hide all pages
 function hideall() {
@@ -20,7 +20,7 @@ function hideall() {
     });
 }
 
-// Function to show selected page number
+// Function to show the selected page number
 function show(pgno) {
     hideall();
     const onepage = document.querySelector("#page" + pgno);
@@ -30,7 +30,10 @@ function show(pgno) {
     }, 0);
 }
 
-// Listen for clicks on the links, assign anonymous event handler functions to call show function
+// Initialize by showing the first page
+show(1);
+
+// Event listeners for page navigation
 page1btn.addEventListener("click", event => {
     event.preventDefault();
     show(1);
@@ -47,12 +50,17 @@ page4btn.addEventListener("click", event => {
     event.preventDefault();
     show(4);
 });
+page5btn.addEventListener("click", event => {
+    event.preventDefault();
+    show(5);
+});
 
+// Function to handle page load and apply loaded class
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// Audio to play when browsing
+// Function to manage background audio playback
 document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('background-audio');
 
@@ -91,13 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 // Function to toggle the hamburger menu
 function toggleMenus() {
     menuItemsList.classList.toggle("menuHide");
 }
 
-// JS for hamMenu
+// Event listener for the hamburger menu
 hamBtn.addEventListener("click", toggleMenus);
 
 // Function to toggle recipe details
@@ -106,9 +113,6 @@ function toggleRecipeDetails() {
     instructions.style.display = (instructions.style.display === 'none' || instructions.style.display === '') ? 'block' : 'none';
     instructions.classList.toggle('show');
 }
-
-// Initialize by showing the first page
-show(1);
 
 // Drag-and-drop functionality for ingredients
 ingredients.forEach(ingredient => {
@@ -214,4 +218,62 @@ function trash(event) {
 // Function to handle drag start for stickers on the plate
 function dragStartForSticker(event) {
     event.dataTransfer.setData('text/plain', event.target.id);
+}
+
+// Function to handle quiz submission
+function submitQuiz() {
+    const form = document.getElementById('quiz-form');
+    const questions = form.querySelectorAll('.quiz-question');
+    let score = 0;
+
+    questions.forEach(question => {
+        const selected = question.querySelector('input[type="radio"]:checked');
+        const correctAnswer = question.querySelector('input[type="radio"][value="right"]');
+
+        // Reset previous styles
+        question.querySelectorAll('label').forEach(label => {
+            label.style.color = '';
+            label.style.fontWeight = '';
+            label.style.backgroundColor = '';
+        });
+
+        const questionText = question.querySelector('p');
+
+        if (selected) {
+            if (selected.value === 'right') {
+                score++;
+                // Mark correct answer
+                questionText.style.color = '#d4edda'; // Green text for correct
+                selected.nextElementSibling.style.color = '#155724'; // Green text for correct
+                selected.nextElementSibling.style.backgroundColor = '#d4edda'; // Light green background for correct
+                selected.nextElementSibling.style.fontWeight = 'bold'; // Bold correct answer
+            } else {
+                // Mark wrong answer
+                questionText.style.color = '#f8d7da'; // Red text for incorrect
+                selected.nextElementSibling.style.color = '#721c24'; // Dark red text for incorrect
+                selected.nextElementSibling.style.backgroundColor = '#f8d7da'; // Light red background for incorrect
+                correctAnswer.nextElementSibling.style.color = '#155724'; // Green text for correct
+                correctAnswer.nextElementSibling.style.backgroundColor = '#d4edda'; // Light green background for correct
+                correctAnswer.nextElementSibling.style.fontWeight = 'bold'; // Bold correct answer
+            }
+        } else {
+            // No answer selected
+            questionText.style.color = '#e0df9e'; // Yellow text for unanswered
+            // Highlight correct answer for unanswered questions
+            correctAnswer.nextElementSibling.style.color = '#155724'; // Green text for correct
+            correctAnswer.nextElementSibling.style.backgroundColor = '#d4edda'; // Light green background for correct
+            correctAnswer.nextElementSibling.style.fontWeight = 'bold'; // Bold correct answer
+        }
+    });
+
+    const resultDiv = document.getElementById('quiz-result');
+    resultDiv.textContent = `You scored ${score} out of ${questions.length}!`;
+
+    // Disable all inputs after submission
+    form.querySelectorAll('input').forEach(input => {
+        input.disabled = true;
+    });
+
+    // Disable the submit button
+    form.querySelector('button').disabled = true;
 }

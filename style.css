@@ -2,17 +2,18 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #121212;
-    /* Dark background */
     color: #e0e0e0;
-    /* Light text */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     overflow-x: hidden;
-    /* Prevent horizontal scroll bar */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
 }
 
 body.loaded {
@@ -21,29 +22,22 @@ body.loaded {
 
 header,
 nav,
-main,
 footer {
     width: 100%;
     margin: 0 auto;
     padding: 1em;
+    box-sizing: border-box;
 }
 
-/* Header styles */
 header {
     background-color: #1e1e1e;
-    /* Darker header */
     color: #76ff03;
-    /* Green text */
-    border-bottom: 2px solid #76ff03;
-    /* Green border */
+    border-bottom: 0.125em solid #76ff03;
 }
 
-/* Navigation styles */
 nav {
     background-color: #1e1e1e;
-    /* Match header background */
-    border-bottom: 2px solid #76ff03;
-    /* Green border */
+    border-bottom: 0.125em solid #76ff03;
 }
 
 nav ul {
@@ -61,49 +55,41 @@ nav ul li {
 nav a {
     text-decoration: none;
     color: #76ff03;
-    /* Green links */
     padding: 0.5em 1em;
-    border-radius: 5px;
+    border-radius: 0.3125em;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 nav a:hover {
     background-color: #76ff03;
-    /* Green background on hover */
     color: #121212;
-    /* Dark text on hover */
 }
 
-/* Button styles */
 button {
     background-color: #76ff03;
-    /* Green background */
     color: #121212;
-    /* Dark text */
     border: none;
     padding: 0.5em 1em;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0.3125em;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
     background-color: #ff0000;
-    /* Red background on hover */
-    transform: translateY(-5px);
-    /* Move up on hover */
+    transform: translateY(-0.3125em);
 }
 
-/* Main content styles */
 main {
+    position: relative;
     background-color: #1e1e1e;
-    /* Dark background for main content */
     padding: 1em;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0.3125em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    width: 100%;
 }
 
-/* Image styles */
 img {
     width: 50%;
     height: auto;
@@ -113,25 +99,22 @@ img {
 
 img:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.3);
 }
 
-/* Footer styles */
 footer {
     margin-top: 2em;
     padding: 1em;
     background-color: #1e1e1e;
-    /* Darker footer */
     color: #76ff03;
-    /* Green text */
     width: 100%;
 }
 
-/* Page styles */
 .page {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    width: 100%;
 }
 
 .page.active {
@@ -139,29 +122,121 @@ footer {
     opacity: 1;
 }
 
+/* Timeline Styles */
+.timeline-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 1.25em;
+    height: 50vh;
+    overflow-y: scroll;
+    border: 0.125em solid #76ff03;
+    border-radius: 0.3125em;
+    background-color: #1e1e1e;
+}
+
+.timeline {
+    position: relative;
+    width: 100%;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 0.375em;
+    background-color: #76ff03;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -0.1875em;
+}
+
+.timeline-item {
+    padding: 0.625em 2.5em;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.timeline-item::after {
+    content: ' ';
+    position: absolute;
+    width: 1.5625em;
+    height: 1.5625em;
+    background-color: #76ff03;
+    border: 0.25em solid #76ff03;
+    top: 0.9375em;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -1.0625em;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -1.0625em;
+}
+
+.timeline-date {
+    padding: 0.625em;
+    background: #76ff03;
+    color: #121212;
+    position: absolute;
+    top: 0.9375em;
+    width: 100%;
+    max-width: 6.25em;
+    text-align: center;
+    border-radius: 0.375em;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+    left: calc(100% + 0.625em);
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    right: calc(100% + 0.625em);
+}
+
+.timeline-content {
+    padding: 1.25em 1.875em;
+    background: #1e1e1e;
+    position: relative;
+    border-radius: 0.375em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+}
+
 /* Specific page layout */
 #page1extra {
     display: grid;
-    grid-template-columns: 560px 560px;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto 1fr;
     grid-template-areas: "image video" "text video";
-    gap: 20px;
+    gap: 1.25em;
     justify-content: center;
     align-items: start;
+    margin-top: 5%;
 }
 
 #page1extra text-content {
-    grid-area: image;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #page1extra img {
-    width: 100%;
+    width: 90%;
     height: auto;
-    max-width: 560px;
-    max-height: 315px;
+    max-height: 100%;
 }
 
 #page1extra p {
@@ -169,69 +244,209 @@ footer {
 }
 
 .video-frame {
-    grid-area: video;
-    width: 100%;
+    width: 45vw;
     height: 100%;
-    max-height: 630px;
     border: none;
-    border-radius: 5%;
+    border-radius: 1em;
 }
 
 /* DIY Carbonara styles */
 #ingredients {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 1.25em;
 }
 
 #ingredients img {
-    width: 100px;
+    width: 5em;
     height: auto;
     cursor: pointer;
 }
 
 #plate {
-    margin-top: 20px;
+    margin-top: 1.25em;
 }
 
 #dropzone {
     width: 100%;
-    height: 200px;
-    border: 2px dashed #76ff03;
-    /* Green border */
+    height: 12.5em;
+    border: 0.125em dashed #76ff03;
     position: relative;
 }
 
 #trashicon {
-    width: 50px;
+    width: 2.5em;
     height: auto;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    cursor: pointer;
+    margin-top: 5%;
+}
+
+#instruction {
+    display: none;
 }
 
 /* Hamburger icon styles */
 #hamIcon {
     display: none;
     background-color: #76ff03;
-    /* Green background */
     color: #121212;
-    /* Dark text */
     border: none;
     padding: 0.5em;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0.3125em;
 }
 
-/* Instructions styles */
-#instructions {
-    border: 2px solid #76ff03;
-    /* Green border */
-    padding: 0.5em;
-    border-radius: 5px;
+/* Legend styles */
+#legend {
+    position: relative;
+    background-color: #1e1e1e;
+    padding: 0.625em;
+    border-radius: 0.3125em;
+    border: 0.125em solid #76ff03;
+    color: #e0e0e0;
+    font-size: 0.9em;
+}
+
+#legend h3 {
+    margin: 0 0 0.625em 0;
+}
+
+.correct-answer {
+    color: #155724;
+    font-weight: bold;
+}
+
+.incorrect-answer {
+    color: #721c24;
+    font-weight: bold;
+}
+
+.unanswered-question {
+    color: #856404;
+    font-weight: bold;
+}
+
+/* Quiz Styles */
+#quiz {
+    margin-top: 1.25em;
+}
+
+.quiz-question {
+    margin-bottom: 1.25em;
+}
+
+.quiz-question p {
+    margin-bottom: 0.625em;
+}
+
+.quiz-question label {
+    display: block;
+    margin-bottom: 0.625em;
+    padding: 0.625em;
+    background-color: #1e1e1e;
+    border-radius: 0.3125em;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.quiz-question input[type="radio"] {
     display: none;
-    /* Initially hidden */
+}
+
+.quiz-question input[type="radio"]:checked+label {
+    background-color: yellow;
+    color: #121212;
+}
+
+.quiz-question label:hover {
+    background-color: #76ff03;
+    color: #121212;
+}
+
+#quiz-result {
+    margin-top: 1.25em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Optional: Style for the submit button */
+button {
+    background-color: #76ff03;
+    color: #121212;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-radius: 0.3125em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff0000;
+    transform: translateY(-0.3125em);
+}
+
+/* Recipe and Pairings styling */
+.recipe-container,
+.pairings-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.25em;
+    margin-top: 1.25em;
+}
+
+.ingredients,
+.instructions,
+.drinks,
+.sides {
+    background-color: #1e1e1e;
+    padding: 1em;
+    border-radius: 0.3125em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    flex: 1 1 45%;
+    max-width: 45%;
+    box-sizing: border-box;
+}
+
+.ingredients ul,
+.drinks ul,
+.sides ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ingredients li,
+.drinks li,
+.sides li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.625em;
+    width: 100%;
+}
+
+.drinks li strong,
+.sides li strong {
+    color: #76ff03;
+    white-space: nowrap; /* Prevent line breaks */
+    margin-right: 1%;
+}
+
+.ingredients img {
+    margin-right: 0.625em;
+}
+
+.instructions {
+    flex: 1 1 100%;
+    max-width: 100%;
+}
+
+.instructions p {
+    margin: 0.625em 0;
+}
+
+h3 {
+    color: #76ff03;
+    margin-bottom: 0.625em;
 }
 
 /* Media query for screens 800px and below */
@@ -258,41 +473,120 @@ footer {
     nav,
     footer {
         color: #ff0000;
-        /* Red text */
-        border-bottom: 2px solid #ff0000;
-        /* Red border */
+        border-bottom: 0.125em solid #ff0000;
     }
 
     nav a {
         color: #ff0000;
-        /* Red links */
     }
 
     nav a:hover {
         background-color: #ff0000;
-        /* Red background on hover */
         color: #121212;
-        /* Dark text on hover */
-    }
-
-    #dropzone {
-        border: 2px dashed #ff0000;
-        /* Red border */
-    }
-
-    #instructions {
-        border: 2px solid #ff0000;
-        /* Red border */
     }
 
     #hamIcon {
         background-color: #ff0000;
-        /* Red background */
+    }
+
+    #legend {
+        border-color: #ff0000;
+    }
+
+    #legend h3 {
+        color: #ff0000;
     }
 
     #page1extra {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 1.25em;
+        margin-top: 1.25em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #page1extra img,
+    .video-frame {
+        width: 90%;
+        height: 50vh;
+        border-radius: 0.3125em;
+    }
+
+    #page1extra p {
+        text-align: center;
+        margin: 0.625em 0;
+    }
+
+    #dropzone {
+        border: 0.125em dashed #ff0000;
+    }
+
+    #instructions {
+        border: 0.125em solid #ff0000;
+    }
+
+    .timeline-container {
+        width: 100%;
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .timeline::after {
+        display: none;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 2em;
+        left: 0 !important;
+        padding-bottom: 1.5em;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        width: 0.375em;
+        height: 100%;
+        background-color: #76ff03;
+        left: 0;
+        top: 0;
+    }
+
+    .timeline-item::after {
+        left: 0.75em !important;
+        transform: translateX(0);
+    }
+
+    .timeline-date {
+        position: relative;
+        left: 1.5em;
+        top: 0.5em;
+        margin: 0;
+        width: auto;
+        text-align: left;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-date {
+        left: 1.5em !important;
+    }
+
+    .timeline-content {
+        margin: -1em 0 0 2em;
+    }
+
+    .pairings-container,
+    .recipe-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .drinks,
+    .sides,
+    .ingredients,
+    .instructions {
+        max-width: 100%;
+        flex: 1 1 100%;
     }
 }
