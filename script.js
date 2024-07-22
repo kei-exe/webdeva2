@@ -4,6 +4,8 @@ const page2btn = document.querySelector("#page2btn");
 const page3btn = document.querySelector("#page3btn");
 const page4btn = document.querySelector("#page4btn");
 const page5btn = document.querySelector("#page5btn");
+const page6btn = document.querySelector("#page6btn");
+
 const allpages = document.querySelectorAll(".page");
 
 // Select elements for the hamburger menu, ingredients, dropzone, and trash icon
@@ -53,6 +55,10 @@ page4btn.addEventListener("click", event => {
 page5btn.addEventListener("click", event => {
     event.preventDefault();
     show(5);
+});
+page6btn.addEventListener("click", event => {
+    event.preventDefault();
+    show(6);
 });
 
 // Function to handle page load and apply loaded class
@@ -276,4 +282,205 @@ function submitQuiz() {
 
     // Disable the submit button
     form.querySelector('button').disabled = true;
+}
+
+// Check if the browser supports the Fullscreen API
+if (document.documentElement.requestFullscreen) {
+    // Function to enter fullscreen mode
+    function enterFullscreen() {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+            document.documentElement.msRequestFullscreen();
+        }
+    }
+
+    // Function to exit fullscreen mode
+    function exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
+
+    // Add event listeners to enter/exit fullscreen on button click
+    var fullscreenButton = document.getElementById('fullscreen-button');
+
+    fullscreenButton.addEventListener('click', function () {
+        if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+            exitFullscreen();
+        } else {
+            enterFullscreen();
+        }
+    });
+}
+
+const ingredientsImages = ["images/spaghetti.png", "images/pancetta.png", "images/egg.png", "images/cheese.png"];
+let canvas, ctx, bowl, gameIngredients, gameInterval, touchStartX, score, timeRemaining, gameOver;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const gameSection = document.getElementById('page5');
+    if (window.innerWidth <= 800) {
+        initializeGame();
+    }
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 800 && gameSection.style.display !== 'none') {
+            initializeGame();
+        } else {
+            clearInterval(gameInterval); // Stop the game if resizing to a larger screen
+        }
+    });
+});
+
+function initializeGame() {
+    if (canvas) return; // Ensure the game is only initialized once
+
+    canvas = document.getElementById('gameCanvas');
+    ctx = canvas.getContext('2d');
+    resizeCanvas();
+
+    bowl = {
+        x: canvas.width / 2 - 50,
+        y: canvas.height - 30,
+        width: 100,
+        height: 20,
+        dx: 100 // Increased speed of the bowl
+    };
+
+    gameIngredients = [];
+    score = 0;
+    timeRemaining = 60; // Game duration in seconds
+    gameOver = false;
+
+    document.getElementById('startGameButton').addEventListener('click', startGame);
+    document.addEventListener('keydown', moveBowl);
+    canvas.addEventListener('touchstart', handleTouchStart);
+    canvas.addEventListener('touchmove', handleTouchMove);
+
+    window.addEventListener('resize', resizeCanvas);
+
+    function startGame() {
+        if (gameInterval) clearInterval(gameInterval);
+        gameIngredients = [];
+        score = 0;
+        timeRemaining = 60;
+        gameOver = false;
+        gameInterval = setInterval(updateGame, 1000 / 60);
+        setTimeout(endGame, timeRemaining * 1000); // End the game after the specified duration
+    }
+
+    function moveBowl(e) {
+        if (e.key === 'ArrowLeft' && bowl.x > 0) {
+            bowl.x -= bowl.dx;
+        } else if (e.key === 'ArrowRight' && bowl.x + bowl.width < canvas.width) {
+            bowl.x += bowl.dx;
+        }
+    }
+
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+    }
+
+    function handleTouchMove(e) {
+        const touchX = e.touches[0].clientX;
+        const touchDx = touchX - touchStartX;
+
+        if (touchDx < 0 && bowl.x > 0) {
+            bowl.x -= bowl.dx;
+        } else if (touchDx > 0 && bowl.x + bowl.width < canvas.width) {
+            bowl.x += bowl.dx;
+        }
+
+        touchStartX = touchX; // Update touch start position
+        e.preventDefault(); // Prevent default touch behavior
+    }
+
+    function updateGame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBowl();
+        drawScore();
+        drawTime();
+        if (Math.random() < 0.02) {
+            createIngredient();
+        }
+        updateIngredients();
+        if (!gameOver) {
+            timeRemaining -= 1 / 60;
+            if (timeRemaining <= 0) {
+                timeRemaining = 0;
+                endGame();
+            }
+        }
+    }
+
+    function drawBowl() {
+        ctx.fillStyle = '#76ff03';
+        ctx.fillRect(bowl.x, bowl.y, bowl.width, bowl.height);
+    }
+
+    function createIngredient() {
+        const x = Math.random() * (canvas.width - 50); // Adjusted for larger size
+        const img = new Image();
+        img.src = ingredientsImages[Math.floor(Math.random() * ingredientsImages.length)];
+        gameIngredients.push({ x, y: 0, width: 50, height: 50, img }); // Increased size
+    }
+
+    function updateIngredients() {
+        for (let i = 0; i < gameIngredients.length; i++) {
+            const ingredient = gameIngredients[i];
+            ingredient.y += 3;
+            ctx.drawImage(ingredient.img, ingredient.x, ingredient.y, ingredient.width, ingredient.height);
+
+            if (ingredient.y + ingredient.height > bowl.y && ingredient.x < bowl.x + bowl.width && ingredient.x + ingredient.width > bowl.x) {
+                gameIngredients.splice(i, 1);
+                i--;
+                score += 10; // Increase score for catching an ingredient
+            } else if (ingredient.y + ingredient.height > canvas.height) {
+                gameIngredients.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
+    function drawScore() {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '20px Arial';
+        ctx.fillText('Score: ' + score, 10, 20);
+    }
+
+    function drawTime() {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '20px Arial';
+        ctx.fillText('Time: ' + Math.ceil(timeRemaining), canvas.width - 100, 20);
+    }
+
+    function endGame() {
+        timeRemaining = 0;
+        gameOver = true;
+        clearInterval(gameInterval);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '40px Arial';
+        ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);
+        ctx.fillText('Score: ' + score, canvas.width / 2 - 100, canvas.height / 2 + 50);
+    }
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight - 300;
+        if (bowl) {
+            bowl.y = canvas.height - 30;
+        }
+    }
 }

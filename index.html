@@ -5,6 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">
+    <meta name="apple-mobile-web-app-title" content="yes">
+
+    <!-- get icons from https://favicon.io/ -->
+    <link rel="icon" type="image/x-icon" href="icons/favcon.io">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+
+    <!--for android-->
+    <link rel="manifest" href="icons/site.webmanifest">
+    <title>Launch from Home screen demo</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -16,6 +31,7 @@
     <!-- Page header -->
     <header>
         <h1>Carbonara</h1>
+        <button id="fullscreen-button">Toggle Fullscreen</button>
     </header>
 
     <!-- Navigation menu -->
@@ -25,8 +41,9 @@
             <li><a href="#" id="page1btn">History</a></li>
             <li><a href="#" id="page2btn">Recipe</a></li>
             <li><a href="#" id="page3btn">Pairings</a></li>
-            <li><a href="#" id="page4btn">DIY Carbonara</a></li>
-            <li><a href="#" id="page5btn">Quiz</a></li>
+            <li><a href="#" id="page4btn">Game</a></li>
+            <li><a href="#" id="page5btn">Game</a></li>
+            <li><a href="#" id="page6btn">Quiz</a></li>
         </ul>
     </nav>
 
@@ -200,8 +217,16 @@
             <img src="images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
         </section>
 
-        <!-- Quiz page -->
+        <!-- Catch the Ingredients Game page -->
         <section class="page" id="page5">
+            <h2>Catch the Ingredients</h2>
+            <canvas id="gameCanvas"></canvas>
+            <button id="startGameButton">Start Game</button>
+            <p>Use left and right arrow keys to move the bowl.</p>
+        </section>
+
+        <!-- Quiz page -->
+        <section class="page" id="page6">
             <h2>Carbonara Quiz</h2>
             <div id="legend">
                 <h3>Legend:</h3>
@@ -328,7 +353,8 @@
 
     <!-- Page footer -->
     <footer>
-        <p>&copy; 2024 Carbonara World</p>
+        <img src="images/qrcode.png" alt="QR Code" class="qr-code">
+        <p>&copy; Carbonara Yum!</p>
     </footer>
 </body>
 

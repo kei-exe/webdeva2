@@ -163,7 +163,6 @@ footer {
     position: absolute;
     width: 1.5625em;
     height: 1.5625em;
-    background-color: #76ff03;
     border: 0.25em solid #76ff03;
     top: 0.9375em;
     border-radius: 50%;
@@ -191,7 +190,7 @@ footer {
     background: #76ff03;
     color: #121212;
     position: absolute;
-    top: 0.9375em;
+    top: 1em;
     width: 100%;
     max-width: 6.25em;
     text-align: center;
@@ -200,11 +199,11 @@ footer {
 }
 
 .timeline-item:nth-child(odd) .timeline-date {
-    left: calc(100% + 0.625em);
+    left: calc(100% + 2em);
 }
 
 .timeline-item:nth-child(even) .timeline-date {
-    right: calc(100% + 0.625em);
+    right: calc(100% + 2em);
 }
 
 .timeline-content {
@@ -427,7 +426,8 @@ button:hover {
 .drinks li strong,
 .sides li strong {
     color: #76ff03;
-    white-space: nowrap; /* Prevent line breaks */
+    white-space: nowrap;
+    /* Prevent line breaks */
     margin-right: 1%;
 }
 
@@ -447,6 +447,17 @@ button:hover {
 h3 {
     color: #76ff03;
     margin-bottom: 0.625em;
+}
+
+.qr-code {
+    width: 100px;
+    height: 100px;
+}
+
+/* Initial state: hide the game section */
+#page5,
+#page5btn {
+    display: none;
 }
 
 /* Media query for screens 800px and below */
@@ -497,6 +508,25 @@ h3 {
         color: #ff0000;
     }
 
+    .timeline-container {
+        border-color: red;
+        color: red;
+
+    }
+
+    .timeline-item {
+        border-bottom-color: red;
+    }
+
+    .timeline-content h3 {
+        color: white;
+    }
+
+    .timeline-content p,
+    .timeline-item::before {
+        color: red;
+    }
+
     #page1extra {
         display: flex;
         flex-direction: column;
@@ -507,7 +537,12 @@ h3 {
         box-sizing: border-box;
     }
 
-    #page1extra img,
+    #page1extra img {
+        width: 90%;
+        height: auto;
+        border-radius: 0.3125em;
+    }
+
     .video-frame {
         width: 90%;
         height: 50vh;
@@ -544,12 +579,12 @@ h3 {
         padding-bottom: 1.5em;
     }
 
-    .timeline-item::before {
+    .timeline-item::after {
         content: '';
         position: absolute;
         width: 0.375em;
         height: 100%;
-        background-color: #76ff03;
+        background-color: #ff0000;
         left: 0;
         top: 0;
     }
@@ -588,5 +623,33 @@ h3 {
     .instructions {
         max-width: 100%;
         flex: 1 1 100%;
+    }
+
+    .qr-code {
+        display: none;
+    }
+
+    #page4,
+    #page4btn {
+        display: none;
+        /* Hide DIY Carbonara section */
+    }
+
+    #page5,
+    #page5btn {
+        display: block;
+        /* Show the game section */
+    }
+
+    #gameCanvas {
+        display: block;
+        /* Show game canvas and start button */
+        width: 100%;
+        height: auto;
+    }
+
+    #startGameButton {
+        display: block;
+        /* Show game canvas and start button */
     }
 }
