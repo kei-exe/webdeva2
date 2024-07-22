@@ -354,7 +354,7 @@ function initializeGame() {
         y: canvas.height - 30,
         width: 100,
         height: 20,
-        dx: 1 // Increased speed of the bowl
+        dx: 0.5 // Increased speed of the bowl
     };
 
     gameIngredients = [];
