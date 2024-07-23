@@ -41,9 +41,9 @@
             <li><a href="#" id="page1btn">History</a></li>
             <li><a href="#" id="page2btn">Recipe</a></li>
             <li><a href="#" id="page3btn">Pairings</a></li>
-            <li><a href="#" id="page4btn">Game</a></li>
-            <li><a href="#" id="page5btn">Game</a></li>
-            <li><a href="#" id="page6btn">Quiz</a></li>
+            <li><a href="#" id="page4btn">Quiz</a></li>
+            <li><a href="#" id="page5btn">Game(PC)</a></li>
+            <li><a href="#" id="page6btn">Game(Mobile)</a></li>
         </ul>
     </nav>
 
@@ -199,34 +199,8 @@
                     target="_blank">here</a>.</p>
         </section>
 
-        <!-- DIY Carbonara page -->
-        <section class="page" id="page4">
-            <h2>DIY Carbonara</h2>
-            <h5>(Stickers can be placed anywhere)</h5>
-            <div id="ingredients">
-                <h3>Ingredients</h3>
-                <img src="images/spaghetti.png" alt="Spaghetti" id="spaghetti" class="ingredient" draggable="true">
-                <img src="images/pancetta.png" alt="Pancetta" id="pancetta" class="ingredient" draggable="true">
-                <img src="images/egg.png" alt="Egg" id="egg" class="ingredient" draggable="true">
-                <img src="images/cheese.png" alt="Cheese" id="cheese" class="ingredient" draggable="true">
-            </div>
-            <div id="plate">
-                <h3>DropZone<br>(Drop image here to make sticker)</h3>
-                <div id="dropzone"></div>
-            </div>
-            <img src="images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
-        </section>
-
-        <!-- Catch the Ingredients Game page -->
-        <section class="page" id="page5">
-            <h2>Catch the Ingredients</h2>
-            <canvas id="gameCanvas"></canvas>
-            <button id="startGameButton">Start Game</button>
-            <p>Use left and right arrow keys to move the bowl.</p>
-        </section>
-
         <!-- Quiz page -->
-        <section class="page" id="page6">
+        <section class="page" id="page4">
             <h2>Carbonara Quiz</h2>
             <div id="legend">
                 <h3>Legend:</h3>
@@ -348,6 +322,37 @@
                 <button type="button" onclick="submitQuiz()">Submit</button>
             </form>
             <div id="quiz-result"></div>
+        </section>
+
+        <!-- DIY Carbonara page -->
+        <section class="page" id="page5">
+            <h2>DIY Carbonara</h2>
+            <h5>(Stickers can be placed anywhere)</h5>
+            <div id="ingredients">
+                <h3>Ingredients</h3>
+                <img src="images/spaghetti.png" alt="Spaghetti" id="spaghetti" class="ingredient" draggable="true">
+                <img src="images/pancetta.png" alt="Pancetta" id="pancetta" class="ingredient" draggable="true">
+                <img src="images/egg.png" alt="Egg" id="egg" class="ingredient" draggable="true">
+                <img src="images/cheese.png" alt="Cheese" id="cheese" class="ingredient" draggable="true">
+            </div>
+            <div id="plate">
+                <h3>DropZone<br>(Drop image here to make sticker)</h3>
+                <div id="dropzone"></div>
+            </div>
+            <img src="images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
+        </section>
+
+         <!-- Catch the Ingredients Game page -->
+         <section class="page" id="page6">
+            <h2>Catch the Ingredients</h2>
+            <canvas id="gameCanvas"></canvas>
+            <!-- Arrow buttons for mobile control -->
+            <div id="mobileControls">
+                <button id="leftArrow">◀</button>
+                <button id="rightArrow">▶</button>
+            </div>
+            <button id="startGameButton">Start Game</button>
+            <p>Use left and right arrow keys to move the bowl.</p>
         </section>
     </div>
 

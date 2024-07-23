@@ -26,6 +26,7 @@ function hideall() {
 function show(pgno) {
     hideall();
     const onepage = document.querySelector("#page" + pgno);
+    
     onepage.classList.add("fade-enter");
     setTimeout(() => {
         onepage.classList.add("active", "fade-enter-active");
@@ -325,19 +326,24 @@ if (document.documentElement.requestFullscreen) {
 }
 
 const ingredientsImages = ["images/spaghetti.png", "images/pancetta.png", "images/egg.png", "images/cheese.png"];
-let canvas, ctx, bowl, gameIngredients, gameInterval, touchStartX, score, timeRemaining, gameOver;
+let canvas, ctx, bowl, gameIngredients, gameInterval, score, timeRemaining, gameOver;
+let leftArrowPressed = false;
+let rightArrowPressed = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     const gameSection = document.getElementById('page5');
     if (window.innerWidth <= 800) {
         initializeGame();
+        showMobileControls();
     }
 
     window.addEventListener('resize', () => {
         if (window.innerWidth <= 800 && gameSection.style.display !== 'none') {
             initializeGame();
+            showMobileControls();
         } else {
             clearInterval(gameInterval); // Stop the game if resizing to a larger screen
+            hideMobileControls();
         }
     });
 });
@@ -354,7 +360,7 @@ function initializeGame() {
         y: canvas.height - 30,
         width: 100,
         height: 20,
-        dx: 0.5 // Increased speed of the bowl
+        dx: 10 // Increased speed of the bowl
     };
 
     gameIngredients = [];
@@ -363,9 +369,13 @@ function initializeGame() {
     gameOver = false;
 
     document.getElementById('startGameButton').addEventListener('click', startGame);
-    document.addEventListener('keydown', moveBowl);
-    canvas.addEventListener('touchstart', handleTouchStart);
-    canvas.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
+
+    document.getElementById('leftArrow').addEventListener('touchstart', () => leftArrowPressed = true);
+    document.getElementById('leftArrow').addEventListener('touchend', () => leftArrowPressed = false);
+    document.getElementById('rightArrow').addEventListener('touchstart', () => rightArrowPressed = true);
+    document.getElementById('rightArrow').addEventListener('touchend', () => rightArrowPressed = false);
 
     window.addEventListener('resize', resizeCanvas);
 
@@ -379,30 +389,20 @@ function initializeGame() {
         setTimeout(endGame, timeRemaining * 1000); // End the game after the specified duration
     }
 
-    function moveBowl(e) {
-        if (e.key === 'ArrowLeft' && bowl.x > 0) {
-            bowl.x -= bowl.dx;
-        } else if (e.key === 'ArrowRight' && bowl.x + bowl.width < canvas.width) {
-            bowl.x += bowl.dx;
+    function handleKeyDown(e) {
+        if (e.key === 'ArrowLeft') {
+            leftArrowPressed = true;
+        } else if (e.key === 'ArrowRight') {
+            rightArrowPressed = true;
         }
     }
 
-    function handleTouchStart(e) {
-        touchStartX = e.touches[0].clientX;
-    }
-
-    function handleTouchMove(e) {
-        const touchX = e.touches[0].clientX;
-        const touchDx = touchX - touchStartX;
-
-        if (touchDx < 0 && bowl.x > 0) {
-            bowl.x -= bowl.dx;
-        } else if (touchDx > 0 && bowl.x + bowl.width < canvas.width) {
-            bowl.x += bowl.dx;
+    function handleKeyUp(e) {
+        if (e.key === 'ArrowLeft') {
+            leftArrowPressed = false;
+        } else if (e.key === 'ArrowRight') {
+            rightArrowPressed = false;
         }
-
-        touchStartX = touchX; // Update touch start position
-        e.preventDefault(); // Prevent default touch behavior
     }
 
     function updateGame() {
@@ -414,12 +414,22 @@ function initializeGame() {
             createIngredient();
         }
         updateIngredients();
+        updateBowlPosition();
         if (!gameOver) {
             timeRemaining -= 1 / 60;
             if (timeRemaining <= 0) {
                 timeRemaining = 0;
                 endGame();
             }
+        }
+    }
+
+    function updateBowlPosition() {
+        if (leftArrowPressed && bowl.x > 0) {
+            bowl.x -= bowl.dx;
+        }
+        if (rightArrowPressed && bowl.x + bowl.width < canvas.width) {
+            bowl.x += bowl.dx;
         }
     }
 
@@ -465,7 +475,6 @@ function initializeGame() {
     }
 
     function endGame() {
-        timeRemaining = 0;
         gameOver = true;
         clearInterval(gameInterval);
         ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
@@ -483,4 +492,12 @@ function initializeGame() {
             bowl.y = canvas.height - 30;
         }
     }
+}
+
+function showMobileControls() {
+    document.getElementById('mobileControls').style.display = 'flex';
+}
+
+function hideMobileControls() {
+    document.getElementById('mobileControls').style.display = 'none';
 }

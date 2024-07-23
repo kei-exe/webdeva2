@@ -12,8 +12,6 @@ body {
     transition: opacity 0.5s ease-in-out;
     margin: 0;
     width: 100%;
-    overflow-x: hidden;
-    /* Prevent horizontal scrolling */
 }
 
 body.loaded {
@@ -449,14 +447,49 @@ h3 {
     margin-bottom: 0.625em;
 }
 
+
+#gameCanvas {
+    display: block;
+    /* Show game canvas and start button */
+    width: 100%;
+    height: auto;
+}
+
+#startGameButton {
+    display: block;
+    /* Show game canvas and start button */
+}
+
+#mobileControls {
+    display: flex;
+    /* Initially hidden, will be shown for mobile devices */
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    /* Add some space below the controls */
+}
+
+#mobileControls button {
+    background-color: #76ff03;
+    color: #121212;
+    border: none;
+    padding: 1em;
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#mobileControls button:hover {
+    background-color: #ff0000;
+}
+
 .qr-code {
     width: 100px;
     height: 100px;
 }
 
-/* Initial state: hide the game section */
-#page5,
-#page5btn {
+#page6btn{
     display: none;
 }
 
@@ -629,27 +662,11 @@ h3 {
         display: none;
     }
 
-    #page4,
-    #page4btn {
+    #page5btn{
         display: none;
-        /* Hide DIY Carbonara section */
     }
 
-    #page5,
-    #page5btn {
+    #page6btn{
         display: block;
-        /* Show the game section */
-    }
-
-    #gameCanvas {
-        display: block;
-        /* Show game canvas and start button */
-        width: 100%;
-        height: auto;
-    }
-
-    #startGameButton {
-        display: block;
-        /* Show game canvas and start button */
     }
 }
