@@ -13,6 +13,7 @@ var hamBtn = document.querySelector("#hamIcon");
 var recipeBtn = document.querySelector("#recipeIcon");
 var submitBtn = document.querySelector("#submitBtn");
 var redoBtn = document.querySelector("#redoBtn");
+
 var menuItemsList = document.querySelector("nav ul");
 var ingredients = document.querySelectorAll('.ingredient');
 var dropzone = document.getElementById('dropzone');
@@ -371,7 +372,7 @@ if (document.documentElement.requestFullscreen) {
     });
 }
 
-var ingredientsImages = ["images/spaghetti.png", "images/pancetta.png", "images/egg.png", "images/cheese.png"];
+var ingredientsImages = ["media/images/spaghetti.png", "media/images/pancetta.png", "media/images/egg.png", "media/images/cheese.png"];
 var canvas, ctx, bowl, gameIngredients, gameInterval, score, timeRemaining, gameOver;
 var leftArrowPressed = false;
 var rightArrowPressed = false;

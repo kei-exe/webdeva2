@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- Meta tags for character set, viewport settings, and mobile app capabilities -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website on Carbonara</title>
@@ -10,26 +11,34 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="yes">
     <meta name="apple-mobile-web-app-title" content="yes">
 
-    <!-- get icons from https://favicon.io/ -->
-    <link rel="icon" type="image/x-icon" href="icons/favcon.io">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <!-- Favicon and Apple touch icon -->
+    <link rel="icon" type="image/x-icon" href="media/icons/favcon.io">
+    <link rel="apple-touch-icon" sizes="180x180" href="media/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="media/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="media/icons/favicon-16x16.png">
 
     <!--for android-->
-    <link rel="manifest" href="icons/site.webmanifest">
+    <link rel="manifest" href="media/icons/site.webmanifest">
 
+    <!-- Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap"
+        rel="stylesheet">
+
+    <!-- Linking CSS and JavaScript files -->
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <!-- Background audio -->
-    <audio id="background-audio" src="bella-ciao.mp3" preload="auto" loop></audio>
+    <audio id="background-audio" src="media/audio/bella-ciao.mp3" preload="auto" loop></audio>
 
     <!-- Page header -->
     <header>
         <h1>Carbonara</h1>
+        <p>Add Webpage to Home</p>
         <button id="fullscreen-button">Toggle Fullscreen</button>
     </header>
 
@@ -41,8 +50,8 @@
             <li><a href="#" id="page2btn">Recipe</a></li>
             <li><a href="#" id="page3btn">Pairings</a></li>
             <li><a href="#" id="page4btn">Quiz</a></li>
-            <li><a href="#" id="page5btn">Game(PC)</a></li>
-            <li><a href="#" id="page6btn">Game(Mobile)</a></li>
+            <li><a href="#" id="page5btn">Game (PC)</a></li>
+            <li><a href="#" id="page6btn">Game (Mobile)</a></li>
         </ul>
     </nav>
 
@@ -52,7 +61,9 @@
         <section class="page" id="page1">
             <h2>History of Carbonara</h2>
             <div class="timeline-container">
+                <!-- Timeline for historical events -->
                 <div class="timeline">
+                    <!-- Individual timeline items -->
                     <div class="timeline-item">
                         <div class="timeline-date">Early 1800s</div>
                         <div class="timeline-content">
@@ -126,8 +137,9 @@
                 </div>
             </div>
             <div id="page1extra">
+                <!-- External link and embedded video -->
                 <a href="https://en.wikipedia.org/wiki/Carbonara" target="_blank">
-                    <img src="images/carbonara-history.jpg" alt="Carbonara History">
+                    <img src="media/images/carbonara-history.jpg" alt="Carbonara History">
                 </a>
                 <p> Click on the image to learn more about the origins of Carbonara.</p>
                 <iframe class="video-frame" src="https://www.youtube.com/embed/2YX3EYm9AIk?si=ikVQBoUZY9LE75QG"
@@ -141,6 +153,7 @@
         <section class="page" id="page2">
             <h2>Carbonara Recipe</h2>
             <div class="recipe-container">
+                <!-- List of ingredients -->
                 <div class="ingredients">
                     <ul>
                         <li>200g spaghetti</li>
@@ -153,6 +166,7 @@
                         <li>2 tbsp olive oil</li>
                     </ul>
                 </div>
+                <!-- Instructions -->
                 <div id="instructions" style="display:none;">
                     <p>1. Boil the pasta in salted water.</p>
                     <p>2. Fry the pancetta in olive oil until crispy.</p>
@@ -161,8 +175,7 @@
                     <p>5. Remove from heat and quickly mix in the egg and cheese mixture.</p>
                     <p>6. Season with black pepper and serve immediately.</p>
                 </div>
-                <p>For more detailed recipes, visit <a
-                        href="https://www.bbcgoodfood.com/recipes/ultimate-spaghetti-carbonara-recipe"
+                <p>For more detailed recipes, visit <a href="https://www.bbcgoodfood.com/search?q=carbonara"
                         target="_blank">BBC Good Food</a>.</p>
                 <button id="recipeIcon">Show/Hide Cooking Instructions</button>
             </div>
@@ -172,6 +185,7 @@
         <section class="page" id="page3">
             <h2>Pairings for Carbonara</h2>
             <div class="pairings-container">
+                <!-- Drinks recommendations -->
                 <div class="drinks">
                     <h3>Drinks</h3>
                     <ul>
@@ -181,6 +195,7 @@
                         <li><strong>Lemonade:</strong> For a refreshing and citrusy balance.</li>
                     </ul>
                 </div>
+                <!-- Sides recommendations -->
                 <div class="sides">
                     <h3>Sides</h3>
                     <ul>
@@ -201,12 +216,14 @@
         <!-- Quiz page -->
         <section class="page" id="page4">
             <h2>Carbonara Quiz</h2>
+            <!-- Legend for quiz -->
             <div id="legend">
                 <h3>Legend:</h3>
                 <p><span class="correct-answer">Green:</span> Correct answer/question</p>
                 <p><span class="incorrect-answer">Red:</span> Incorrect answer/question</p>
                 <p><span class="unanswered-question">Yellow:</span> Unanswered question</p>
             </div>
+            <!-- Quiz questions and answers -->
             <form id="quiz-form">
                 <div class="quiz-question">
                     <p>1. What is the main ingredient in Carbonara sauce?</p>
@@ -330,18 +347,21 @@
         <section class="page" id="page5">
             <h2>DIY Carbonara</h2>
             <h5>(Stickers can be placed anywhere)</h5>
+            <!-- Ingredients images for drag-and-drop functionality -->
             <div id="ingredients">
                 <h3>Ingredients</h3>
-                <img src="images/spaghetti.png" alt="Spaghetti" id="spaghetti" class="ingredient" draggable="true">
-                <img src="images/pancetta.png" alt="Pancetta" id="pancetta" class="ingredient" draggable="true">
-                <img src="images/egg.png" alt="Egg" id="egg" class="ingredient" draggable="true">
-                <img src="images/cheese.png" alt="Cheese" id="cheese" class="ingredient" draggable="true">
+                <img src="media/images/spaghetti.png" alt="Spaghetti" id="spaghetti" class="ingredient"
+                    draggable="true">
+                <img src="media/images/pancetta.png" alt="Pancetta" id="pancetta" class="ingredient" draggable="true">
+                <img src="media/images/egg.png" alt="Egg" id="egg" class="ingredient" draggable="true">
+                <img src="media/images/cheese.png" alt="Cheese" id="cheese" class="ingredient" draggable="true">
             </div>
             <div id="plate">
                 <h3>DropZone<br>(Drop image here to make sticker)</h3>
                 <div id="dropzone"></div>
             </div>
-            <img src="images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
+            <!-- Remove ingredients -->
+            <img src="media/images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
         </section>
 
         <!-- Catch the Ingredients Game page -->
@@ -360,8 +380,9 @@
 
     <!-- Page footer -->
     <footer>
-        <img src="images/qrcode.png" alt="QR Code" class="qr-code">
-        <p>Add to Home</p>
+        <!-- QR code for Mobile -->
+        <p class="qrScan">Scan on Mobile</p>
+        <img src="media/images/qrcode.png" alt="QR Code" class="qr-code">
         <p>&copy; Carbonara Yum!</p>
     </footer>
 </body>
