@@ -121,6 +121,8 @@ hamBtn.addEventListener("click", toggleMenus);
 function toggleRecipeDetails() {
     var instructions = document.getElementById('instructions');
     instructions.style.display = (instructions.style.display === 'none' || instructions.style.display === '') ? 'block' : 'none';
+    instructions.style.border = "0.125em dashed #beff89";
+    instructions.style.padding = "0.625em";
     instructions.classList.toggle('show');
 }
 

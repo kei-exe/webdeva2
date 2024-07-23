@@ -29,13 +29,13 @@ footer {
 
 header {
     background-color: #1e1e1e;
-    color: #76ff03;
-    border-bottom: 0.125em solid #76ff03;
+    color: #beff89;
+    border-bottom: 0.125em solid #74ff0383;
 }
 
 nav {
     background-color: #1e1e1e;
-    border-bottom: 0.125em solid #76ff03;
+    border-bottom: 0.125em solid #74ff0383;
 }
 
 nav ul {
@@ -52,14 +52,14 @@ nav ul li {
 
 nav a {
     text-decoration: none;
-    color: #76ff03;
+    color: #beff89;
     padding: 0.5em 1em;
     border-radius: 0.3125em;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #76ff03;
+    background-color: #beff89;
     color: #121212;
 }
 
@@ -74,7 +74,7 @@ button {
 }
 
 button:hover {
-    background-color: #ff0000;
+    background-color: #ff9595;
     transform: translateY(-0.3125em);
 }
 
@@ -104,7 +104,7 @@ footer {
     margin-top: 2em;
     padding: 1em;
     background-color: #1e1e1e;
-    color: #76ff03;
+    color: #74ff0383;
     width: 100%;
 }
 
@@ -127,7 +127,7 @@ footer {
     padding: 1.25em;
     height: 50vh;
     overflow-y: scroll;
-    border: 0.125em solid #76ff03;
+    border: 0.125em solid #74ff0383;
     border-radius: 0.3125em;
     background-color: #1e1e1e;
 }
@@ -141,7 +141,7 @@ footer {
     content: '';
     position: absolute;
     width: 0.375em;
-    background-color: #76ff03;
+    background-color: #74ff0383;
     top: 0;
     bottom: 0;
     left: 50%;
@@ -161,7 +161,7 @@ footer {
     position: absolute;
     width: 1.5625em;
     height: 1.5625em;
-    border: 0.25em solid #76ff03;
+    border: 0.25em solid #beff89;
     top: 0.9375em;
     border-radius: 50%;
     z-index: 1;
@@ -185,7 +185,7 @@ footer {
 
 .timeline-date {
     padding: 0.625em;
-    background: #76ff03;
+    background: #beff89;
     color: #121212;
     position: absolute;
     top: 1em;
@@ -365,7 +365,7 @@ footer {
     font-weight: bold;
 }
 
-/* Optional: Style for the submit button */
+/* Style for the submit button */
 button {
     background-color: #76ff03;
     color: #121212;
@@ -377,7 +377,7 @@ button {
 }
 
 button:hover {
-    background-color: #ff0000;
+    background-color: #ff9595;
     transform: translateY(-0.3125em);
 }
 
@@ -442,7 +442,7 @@ button:hover {
 }
 
 h3 {
-    color: #76ff03;
+    color: #beff89;
     margin-bottom: 0.625em;
 }
 
@@ -454,6 +454,7 @@ h3 {
 
 #startGameButton {
     display: block;
+    margin-left: 1em;
 }
 
 #mobileControls {
@@ -475,7 +476,7 @@ h3 {
 }
 
 #mobileControls button:hover {
-    background-color: #ff0000;
+    background-color: #ff9595;
 }
 
 .qr-code {
@@ -510,38 +511,38 @@ h3 {
     header,
     nav,
     footer {
-        color: #ff0000;
-        border-bottom: 0.125em solid #ff0000;
+        color: #ff9595;
+        border-bottom: 0.125em solid #ff9595;
     }
 
     nav a {
-        color: #ff0000;
+        color: #ff9595;
     }
 
     nav a:hover {
-        background-color: #ff0000;
+        background-color: #ff9595;
         color: #121212;
     }
 
     #hamIcon {
-        background-color: #ff0000;
+        background-color: #ff9595;
     }
 
     #legend {
-        border-color: #ff0000;
+        border-color: #ff9595;
     }
 
     #legend h3 {
-        color: #ff0000;
+        color: #ff9595;
     }
 
     .timeline-container {
-        border-color: red;
-        color: red;
+        border-color: #ff9595;
+        color: #ff9595;
     }
 
     .timeline-item {
-        border-bottom-color: red;
+        border-bottom-color: #ff9595;
     }
 
     .timeline-content h3 {
@@ -550,7 +551,7 @@ h3 {
 
     .timeline-content p,
     .timeline-item::before {
-        color: red;
+        color: #ff9595;
     }
 
     #page1extra {
@@ -580,12 +581,8 @@ h3 {
         margin: 0.625em 0;
     }
 
-    #dropzone {
-        border: 0.125em dashed #ff0000;
-    }
-
     #instructions {
-        border: 0.125em solid #ff0000;
+        border: 0.125em solid #ff9595;
     }
 
     .timeline-container {
@@ -610,7 +607,7 @@ h3 {
         position: absolute;
         width: 0.375em;
         height: 100%;
-        background-color: #ff0000;
+        background-color: #ff9595;
         left: 0;
         top: 0;
     }
