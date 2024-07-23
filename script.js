@@ -1,23 +1,26 @@
 // Select navigation buttons and all pages
-const page1btn = document.querySelector("#page1btn");
-const page2btn = document.querySelector("#page2btn");
-const page3btn = document.querySelector("#page3btn");
-const page4btn = document.querySelector("#page4btn");
-const page5btn = document.querySelector("#page5btn");
-const page6btn = document.querySelector("#page6btn");
+var page1btn = document.querySelector("#page1btn");
+var page2btn = document.querySelector("#page2btn");
+var page3btn = document.querySelector("#page3btn");
+var page4btn = document.querySelector("#page4btn");
+var page5btn = document.querySelector("#page5btn");
+var page6btn = document.querySelector("#page6btn");
 
-const allpages = document.querySelectorAll(".page");
+var allpages = document.querySelectorAll(".page");
 
 // Select elements for the hamburger menu, ingredients, dropzone, and trash icon
-const hamBtn = document.querySelector("#hamIcon");
-const menuItemsList = document.querySelector("nav ul");
-const ingredients = document.querySelectorAll('.ingredient');
-const dropzone = document.getElementById('dropzone');
-const trashicon = document.getElementById("trashicon");
+var hamBtn = document.querySelector("#hamIcon");
+var recipeBtn = document.querySelector("#recipeIcon");
+var submitBtn = document.querySelector("#submitBtn");
+var redoBtn = document.querySelector("#redoBtn");
+var menuItemsList = document.querySelector("nav ul");
+var ingredients = document.querySelectorAll('.ingredient');
+var dropzone = document.getElementById('dropzone');
+var trashicon = document.getElementById("trashicon");
 
 // Function to hide all pages
 function hideall() {
-    allpages.forEach(page => {
+    allpages.forEach(function (page) {
         page.classList.remove("active", "fade-enter", "fade-enter-active");
     });
 }
@@ -25,10 +28,10 @@ function hideall() {
 // Function to show the selected page number
 function show(pgno) {
     hideall();
-    const onepage = document.querySelector("#page" + pgno);
-    
+    var onepage = document.querySelector("#page" + pgno);
+
     onepage.classList.add("fade-enter");
-    setTimeout(() => {
+    setTimeout(function () {
         onepage.classList.add("active", "fade-enter-active");
     }, 0);
 }
@@ -37,49 +40,49 @@ function show(pgno) {
 show(1);
 
 // Event listeners for page navigation
-page1btn.addEventListener("click", event => {
+page1btn.addEventListener("click", function (event) {
     event.preventDefault();
     show(1);
 });
-page2btn.addEventListener("click", event => {
+page2btn.addEventListener("click", function (event) {
     event.preventDefault();
     show(2);
 });
-page3btn.addEventListener("click", event => {
+page3btn.addEventListener("click", function (event) {
     event.preventDefault();
     show(3);
 });
-page4btn.addEventListener("click", event => {
+page4btn.addEventListener("click", function (event) {
     event.preventDefault();
     show(4);
 });
-page5btn.addEventListener("click", event => {
+page5btn.addEventListener("click", function (event) {
     event.preventDefault();
     show(5);
 });
-page6btn.addEventListener("click", event => {
+page6btn.addEventListener("click", function (event) {
     event.preventDefault();
     show(6);
 });
 
 // Function to handle page load and apply loaded class
-window.addEventListener('load', () => {
+window.addEventListener('load', function () {
     document.body.classList.add('loaded');
 });
 
 // Function to manage background audio playback
-document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('background-audio');
+document.addEventListener('DOMContentLoaded', function () {
+    var audio = document.getElementById('background-audio');
 
     // Attempt to play the audio on page load
-    const playAudio = () => {
-        audio.play().then(() => {
+    function playAudio() {
+        audio.play().then(function () {
             localStorage.setItem('audioPlaying', 'true');
-        }).catch(error => {
+        }).catch(function (error) {
             console.error('Autoplay was prevented:', error);
             localStorage.setItem('audioPlaying', 'false');
         });
-    };
+    }
 
     // Check if audio was playing before the page was reloaded
     if (localStorage.getItem('audioPlaying') === 'true') {
@@ -87,19 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event listener to play audio when user interacts with the page
-    document.addEventListener('click', () => {
+    document.addEventListener('click', function () {
         if (localStorage.getItem('audioPlaying') === 'false') {
             playAudio();
         }
     });
 
     // Listen for the audio ending to reset the play button and state
-    audio.addEventListener('ended', () => {
+    audio.addEventListener('ended', function () {
         localStorage.setItem('audioPlaying', 'false');
     });
 
     // Reset the state if the audio is paused
-    audio.addEventListener('pause', () => {
+    audio.addEventListener('pause', function () {
         if (audio.currentTime < audio.duration) {
             localStorage.setItem('audioPlaying', 'false');
         }
@@ -116,13 +119,15 @@ hamBtn.addEventListener("click", toggleMenus);
 
 // Function to toggle recipe details
 function toggleRecipeDetails() {
-    const instructions = document.getElementById('instructions');
+    var instructions = document.getElementById('instructions');
     instructions.style.display = (instructions.style.display === 'none' || instructions.style.display === '') ? 'block' : 'none';
     instructions.classList.toggle('show');
 }
 
+recipeBtn.addEventListener("click", toggleRecipeDetails);
+
 // Drag-and-drop functionality for ingredients
-ingredients.forEach(ingredient => {
+ingredients.forEach(function (ingredient) {
     ingredient.addEventListener('dragstart', dragStart);
 });
 
@@ -134,7 +139,7 @@ trashicon.addEventListener('drop', trash);
 // Function to handle drag start
 function dragStart(event) {
     event.dataTransfer.setData('text/plain', event.target.id);
-    setTimeout(() => {
+    setTimeout(function () {
         event.target.classList.add('hide');
     }, 0);
 }
@@ -147,34 +152,34 @@ function dragOver(event) {
 // Function to handle drop on the plate
 function drop(event) {
     event.preventDefault();
-    const id = event.dataTransfer.getData('text/plain');
-    const draggableElement = document.getElementById(id);
+    var id = event.dataTransfer.getData('text/plain');
+    var draggableElement = document.getElementById(id);
 
-    const sticker = draggableElement.cloneNode(true);
+    var sticker = draggableElement.cloneNode(true);
     sticker.classList.remove('hide');
     sticker.style.position = 'absolute';
 
     // Ensure the sticker keeps its original size
-    sticker.style.width = `${draggableElement.clientWidth}px`;
-    sticker.style.height = `${draggableElement.clientHeight}px`;
+    sticker.style.width = draggableElement.clientWidth + 'px';
+    sticker.style.height = draggableElement.clientHeight + 'px';
 
-    const dropzoneRect = dropzone.getBoundingClientRect();
-    const offsetX = event.clientX - dropzoneRect.left;
-    const offsetY = event.clientY - dropzoneRect.top;
+    var dropzoneRect = dropzone.getBoundingClientRect();
+    var offsetX = event.clientX - dropzoneRect.left;
+    var offsetY = event.clientY - dropzoneRect.top;
 
-    sticker.style.left = `${offsetX - sticker.clientWidth / 2}px`;
-    sticker.style.top = `${offsetY - sticker.clientHeight / 2}px`;
+    sticker.style.left = (offsetX - sticker.clientWidth / 2) + 'px';
+    sticker.style.top = (offsetY - sticker.clientHeight / 2) + 'px';
     dropzone.appendChild(sticker);
 
     // Allow the sticker to be dragged within the drop zone
-    sticker.addEventListener('mousedown', event => {
+    sticker.addEventListener('mousedown', function (event) {
         event.preventDefault();
-        const shiftX = event.clientX - sticker.getBoundingClientRect().left;
-        const shiftY = event.clientY - sticker.getBoundingClientRect().top;
+        var shiftX = event.clientX - sticker.getBoundingClientRect().left;
+        var shiftY = event.clientY - sticker.getBoundingClientRect().top;
 
         function moveAt(pageX, pageY) {
-            sticker.style.left = pageX - dropzoneRect.left - shiftX + 'px';
-            sticker.style.top = pageY - dropzoneRect.top - shiftY + 'px';
+            sticker.style.left = (pageX - dropzoneRect.left - shiftX) + 'px';
+            sticker.style.top = (pageY - dropzoneRect.top - shiftY) + 'px';
 
             // Check for overlap with trash icon
             if (isOverlapping(sticker, trashicon)) {
@@ -188,13 +193,15 @@ function drop(event) {
 
         document.addEventListener('mousemove', onMouseMove);
 
-        sticker.onmouseup = () => {
+        sticker.onmouseup = function () {
             document.removeEventListener('mousemove', onMouseMove);
             sticker.onmouseup = null;
         };
     });
 
-    sticker.ondragstart = () => false;
+    sticker.ondragstart = function () {
+        return false;
+    };
 
     // Make the sticker draggable and set up trash functionality
     sticker.setAttribute('draggable', 'true');
@@ -203,8 +210,8 @@ function drop(event) {
 
 // Function to check if two elements overlap
 function isOverlapping(element1, element2) {
-    const rect1 = element1.getBoundingClientRect();
-    const rect2 = element2.getBoundingClientRect();
+    var rect1 = element1.getBoundingClientRect();
+    var rect2 = element2.getBoundingClientRect();
 
     return !(rect1.right < rect2.left ||
         rect1.left > rect2.right ||
@@ -215,8 +222,8 @@ function isOverlapping(element1, element2) {
 // Function to handle drop on the trash icon
 function trash(event) {
     event.preventDefault();
-    const id = event.dataTransfer.getData('text/plain');
-    const sticker = document.getElementById(id);
+    var id = event.dataTransfer.getData('text/plain');
+    var sticker = document.getElementById(id);
     if (sticker && sticker.parentElement === dropzone) {
         sticker.remove();
     }
@@ -229,22 +236,22 @@ function dragStartForSticker(event) {
 
 // Function to handle quiz submission
 function submitQuiz() {
-    const form = document.getElementById('quiz-form');
-    const questions = form.querySelectorAll('.quiz-question');
-    let score = 0;
+    var form = document.getElementById('quiz-form');
+    var questions = form.querySelectorAll('.quiz-question');
+    var score = 0;
 
-    questions.forEach(question => {
-        const selected = question.querySelector('input[type="radio"]:checked');
-        const correctAnswer = question.querySelector('input[type="radio"][value="right"]');
+    questions.forEach(function (question) {
+        var selected = question.querySelector('input[type="radio"]:checked');
+        var correctAnswer = question.querySelector('input[type="radio"][value="right"]');
 
         // Reset previous styles
-        question.querySelectorAll('label').forEach(label => {
+        question.querySelectorAll('label').forEach(function (label) {
             label.style.color = '';
             label.style.fontWeight = '';
             label.style.backgroundColor = '';
         });
 
-        const questionText = question.querySelector('p');
+        var questionText = question.querySelector('p');
 
         if (selected) {
             if (selected.value === 'right') {
@@ -273,46 +280,83 @@ function submitQuiz() {
         }
     });
 
-    const resultDiv = document.getElementById('quiz-result');
-    resultDiv.textContent = `You scored ${score} out of ${questions.length}!`;
+    var resultDiv = document.getElementById('quiz-result');
+    resultDiv.textContent = 'You scored ' + score + ' out of ' + questions.length + '!';
 
     // Disable all inputs after submission
-    form.querySelectorAll('input').forEach(input => {
+    form.querySelectorAll('input').forEach(function (input) {
         input.disabled = true;
     });
 
-    // Disable the submit button
-    form.querySelector('button').disabled = true;
+    // Disable the submit button and show the redo button
+    submitBtn.style.display = 'none';
+    redoBtn.style.display = 'inline';
+}
+
+// Function to handle quiz reset
+function redoQuiz() {
+    var form = document.getElementById('quiz-form');
+    var questions = form.querySelectorAll('.quiz-question');
+
+    questions.forEach(function (question) {
+        // Reset styles and uncheck radio buttons
+        question.querySelectorAll('label').forEach(function (label) {
+            label.style.color = '';
+            label.style.fontWeight = '';
+            label.style.backgroundColor = '';
+        });
+
+        question.querySelectorAll('input[type="radio"]').forEach(function (input) {
+            input.checked = false;
+            input.disabled = false;
+        });
+
+        // Reset question text color
+        var questionText = question.querySelector('p');
+        questionText.style.color = '';
+    });
+
+    // Reset the quiz result text
+    document.getElementById('quiz-result').textContent = '';
+
+    // Show the submit button and hide the redo button
+    submitBtn.style.display = 'inline';
+    redoBtn.style.display = 'none';
+}
+
+submitBtn.addEventListener('click', submitQuiz);
+redoBtn.addEventListener('click', redoQuiz);
+
+function enterFullscreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+        document.msExitFullscreen();
+    }
 }
 
 // Check if the browser supports the Fullscreen API
 if (document.documentElement.requestFullscreen) {
     // Function to enter fullscreen mode
-    function enterFullscreen() {
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-            document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-            document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-            document.documentElement.msRequestFullscreen();
-        }
-    }
-
+    enterFullscreen();
     // Function to exit fullscreen mode
-    function exitFullscreen() {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) { // Firefox
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { // IE/Edge
-            document.msExitFullscreen();
-        }
-    }
-
+    exitFullscreen();
     // Add event listeners to enter/exit fullscreen on button click
     var fullscreenButton = document.getElementById('fullscreen-button');
 
@@ -325,19 +369,19 @@ if (document.documentElement.requestFullscreen) {
     });
 }
 
-const ingredientsImages = ["images/spaghetti.png", "images/pancetta.png", "images/egg.png", "images/cheese.png"];
-let canvas, ctx, bowl, gameIngredients, gameInterval, score, timeRemaining, gameOver;
-let leftArrowPressed = false;
-let rightArrowPressed = false;
+var ingredientsImages = ["images/spaghetti.png", "images/pancetta.png", "images/egg.png", "images/cheese.png"];
+var canvas, ctx, bowl, gameIngredients, gameInterval, score, timeRemaining, gameOver;
+var leftArrowPressed = false;
+var rightArrowPressed = false;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const gameSection = document.getElementById('page5');
+document.addEventListener('DOMContentLoaded', function () {
+    var gameSection = document.getElementById('page5');
     if (window.innerWidth <= 800) {
         initializeGame();
         showMobileControls();
     }
 
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', function () {
         if (window.innerWidth <= 800 && gameSection.style.display !== 'none') {
             initializeGame();
             showMobileControls();
@@ -372,125 +416,139 @@ function initializeGame() {
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
 
-    document.getElementById('leftArrow').addEventListener('touchstart', () => leftArrowPressed = true);
-    document.getElementById('leftArrow').addEventListener('touchend', () => leftArrowPressed = false);
-    document.getElementById('rightArrow').addEventListener('touchstart', () => rightArrowPressed = true);
-    document.getElementById('rightArrow').addEventListener('touchend', () => rightArrowPressed = false);
+    document.getElementById('leftArrow').addEventListener('touchstart', function () {
+        leftArrowPressed = true;
+    });
+    document.getElementById('leftArrow').addEventListener('touchend', function () {
+        leftArrowPressed = false;
+    });
+    document.getElementById('rightArrow').addEventListener('touchstart', function () {
+        rightArrowPressed = true;
+    });
+    document.getElementById('rightArrow').addEventListener('touchend', function () {
+        rightArrowPressed = false;
+    });
 
     window.addEventListener('resize', resizeCanvas);
+}
 
-    function startGame() {
-        if (gameInterval) clearInterval(gameInterval);
-        gameIngredients = [];
-        score = 0;
-        timeRemaining = 60;
-        gameOver = false;
-        gameInterval = setInterval(updateGame, 1000 / 60);
-        setTimeout(endGame, timeRemaining * 1000); // End the game after the specified duration
+function startGame() {
+    if (gameInterval) clearInterval(gameInterval);
+    gameIngredients = [];
+    score = 0;
+    timeRemaining = 60;
+    gameOver = false;
+    gameInterval = setInterval(updateGame, 1000 / 60);
+    setTimeout(endGame, timeRemaining * 1000); // End the game after the specified duration
+}
+
+function handleKeyDown(e) {
+    if (e.key === 'ArrowLeft') {
+        leftArrowPressed = true;
+    } else if (e.key === 'ArrowRight') {
+        rightArrowPressed = true;
     }
+}
 
-    function handleKeyDown(e) {
-        if (e.key === 'ArrowLeft') {
-            leftArrowPressed = true;
-        } else if (e.key === 'ArrowRight') {
-            rightArrowPressed = true;
+function handleKeyUp(e) {
+    if (e.key === 'ArrowLeft') {
+        leftArrowPressed = false;
+    } else if (e.key === 'ArrowRight') {
+        rightArrowPressed = false;
+    }
+}
+
+function updateGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBowl();
+    drawScore();
+    drawTime();
+    if (Math.random() < 0.02) {
+        createIngredient();
+    }
+    updateIngredients();
+    updateBowlPosition();
+    if (!gameOver) {
+        timeRemaining -= 1 / 60;
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            endGame();
         }
     }
+}
 
-    function handleKeyUp(e) {
-        if (e.key === 'ArrowLeft') {
-            leftArrowPressed = false;
-        } else if (e.key === 'ArrowRight') {
-            rightArrowPressed = false;
+function updateBowlPosition() {
+    if (leftArrowPressed && bowl.x > 0) {
+        bowl.x -= bowl.dx;
+    }
+    if (rightArrowPressed && bowl.x + bowl.width < canvas.width) {
+        bowl.x += bowl.dx;
+    }
+}
+
+function drawBowl() {
+    ctx.fillStyle = '#76ff03';
+    ctx.fillRect(bowl.x, bowl.y, bowl.width, bowl.height);
+}
+
+function createIngredient() {
+    var x = Math.random() * (canvas.width - 50); // Adjusted for larger size
+    var img = new Image();
+    img.src = ingredientsImages[Math.floor(Math.random() * ingredientsImages.length)];
+    gameIngredients.push({
+        x: x,
+        y: 0,
+        width: 50,
+        height: 50,
+        img: img
+    }); // Increased size
+}
+
+function updateIngredients() {
+    for (var i = 0; i < gameIngredients.length; i++) {
+        var ingredient = gameIngredients[i];
+        ingredient.y += 3;
+        ctx.drawImage(ingredient.img, ingredient.x, ingredient.y, ingredient.width, ingredient.height);
+
+        if (ingredient.y + ingredient.height > bowl.y && ingredient.x < bowl.x + bowl.width && ingredient.x + ingredient.width > bowl.x) {
+            gameIngredients.splice(i, 1);
+            i--;
+            score += 10; // Increase score for catching an ingredient
+        } else if (ingredient.y + ingredient.height > canvas.height) {
+            gameIngredients.splice(i, 1);
+            i--;
         }
     }
+}
 
-    function updateGame() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawBowl();
-        drawScore();
-        drawTime();
-        if (Math.random() < 0.02) {
-            createIngredient();
-        }
-        updateIngredients();
-        updateBowlPosition();
-        if (!gameOver) {
-            timeRemaining -= 1 / 60;
-            if (timeRemaining <= 0) {
-                timeRemaining = 0;
-                endGame();
-            }
-        }
-    }
+function drawScore() {
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '20px Arial';
+    ctx.fillText('Score: ' + score, 10, 20);
+}
 
-    function updateBowlPosition() {
-        if (leftArrowPressed && bowl.x > 0) {
-            bowl.x -= bowl.dx;
-        }
-        if (rightArrowPressed && bowl.x + bowl.width < canvas.width) {
-            bowl.x += bowl.dx;
-        }
-    }
+function drawTime() {
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '20px Arial';
+    ctx.fillText('Time: ' + Math.ceil(timeRemaining), canvas.width - 100, 20);
+}
 
-    function drawBowl() {
-        ctx.fillStyle = '#76ff03';
-        ctx.fillRect(bowl.x, bowl.y, bowl.width, bowl.height);
-    }
+function endGame() {
+    gameOver = true;
+    clearInterval(gameInterval);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '40px Arial';
+    ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);
+    ctx.fillText('Score: ' + score, canvas.width / 2 - 100, canvas.height / 2 + 50);
+}
 
-    function createIngredient() {
-        const x = Math.random() * (canvas.width - 50); // Adjusted for larger size
-        const img = new Image();
-        img.src = ingredientsImages[Math.floor(Math.random() * ingredientsImages.length)];
-        gameIngredients.push({ x, y: 0, width: 50, height: 50, img }); // Increased size
-    }
-
-    function updateIngredients() {
-        for (let i = 0; i < gameIngredients.length; i++) {
-            const ingredient = gameIngredients[i];
-            ingredient.y += 3;
-            ctx.drawImage(ingredient.img, ingredient.x, ingredient.y, ingredient.width, ingredient.height);
-
-            if (ingredient.y + ingredient.height > bowl.y && ingredient.x < bowl.x + bowl.width && ingredient.x + ingredient.width > bowl.x) {
-                gameIngredients.splice(i, 1);
-                i--;
-                score += 10; // Increase score for catching an ingredient
-            } else if (ingredient.y + ingredient.height > canvas.height) {
-                gameIngredients.splice(i, 1);
-                i--;
-            }
-        }
-    }
-
-    function drawScore() {
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '20px Arial';
-        ctx.fillText('Score: ' + score, 10, 20);
-    }
-
-    function drawTime() {
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '20px Arial';
-        ctx.fillText('Time: ' + Math.ceil(timeRemaining), canvas.width - 100, 20);
-    }
-
-    function endGame() {
-        gameOver = true;
-        clearInterval(gameInterval);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '40px Arial';
-        ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);
-        ctx.fillText('Score: ' + score, canvas.width / 2 - 100, canvas.height / 2 + 50);
-    }
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight - 300;
-        if (bowl) {
-            bowl.y = canvas.height - 30;
-        }
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight - 300;
+    if (bowl) {
+        bowl.y = canvas.height - 30;
     }
 }
 

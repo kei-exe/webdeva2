@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Website on Carbonara</title>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="yes">
@@ -18,7 +18,6 @@
 
     <!--for android-->
     <link rel="manifest" href="icons/site.webmanifest">
-    <title>Launch from Home screen demo</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -26,7 +25,7 @@
 
 <body>
     <!-- Background audio -->
-    <audio id="background-audio" src="bella ciao.mp3" preload="auto" loop></audio>
+    <audio id="background-audio" src="bella-ciao.mp3" preload="auto" loop></audio>
 
     <!-- Page header -->
     <header>
@@ -165,7 +164,7 @@
                 <p>For more detailed recipes, visit <a
                         href="https://www.bbcgoodfood.com/recipes/ultimate-spaghetti-carbonara-recipe"
                         target="_blank">BBC Good Food</a>.</p>
-                <button class="recipe-button" onclick="toggleRecipeDetails()">Show/Hide Cooking Instructions</button>
+                <button id="recipeIcon">Show/Hide Cooking Instructions</button>
             </div>
         </section>
 
@@ -319,7 +318,10 @@
                     <input type="radio" id="q10d" name="q10" value="right">
                     <label for="q10d">Pancetta</label>
                 </div>
-                <button type="button" onclick="submitQuiz()">Submit</button>
+                <div id="quiz-buttons">
+                    <button type="button" id="submitBtn" class="submit-button">Submit</button>
+                    <button type="button" id="redoBtn" class="redo-button" style="display: none;">Redo Quiz</button>
+                </div>
             </form>
             <div id="quiz-result"></div>
         </section>
@@ -342,8 +344,8 @@
             <img src="images/trash-icon.png" alt="Trash Bin" id="trashicon" draggable="false">
         </section>
 
-         <!-- Catch the Ingredients Game page -->
-         <section class="page" id="page6">
+        <!-- Catch the Ingredients Game page -->
+        <section class="page" id="page6">
             <h2>Catch the Ingredients</h2>
             <canvas id="gameCanvas"></canvas>
             <!-- Arrow buttons for mobile control -->
